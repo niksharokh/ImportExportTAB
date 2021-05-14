@@ -2,7 +2,6 @@
 
 import arcpy as a
 from os import path
-import re
 
 
 def get_fields(fc):
@@ -69,15 +68,8 @@ def main(input_folder=input_folder, output_DB=output_DB, cleanDB=cleanDB):
 
         if cleaning_test:
             a.AddMessage(u"Данные из базы данных удалены успешно!")   
-    try:
-        match = re.findall(u'[Лл][Ее][Сс][Хх][Оо][Зз]_*(\d{3,4})', input_folder)
-        leshoz_num = match[0]
-        a.AddMessage(u"Номер лесхоза - {}".format(leshoz_num))
-        #leshoz_num = input_folder.split("_")[-1]
-    except:
-        a.AddError("Невозможно получить номер лесхоза из названия каталога, т.к. не содержит шаблон 'Лесхоз_<номер>'")
-        raise a.ExecuteError
-
+    
+    leshoz_num = input_folder.split("_")[-1]
     loading_test = 1
     
     a.AddMessage(u"\nИмпорт классов пространственных объектов")
