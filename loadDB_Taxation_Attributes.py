@@ -6,6 +6,24 @@
 import arcpy as a
 from os import path
 
+# Замена значений 0 на Null
+def calc_zerofield(tableList):
+    a.AddMessage('\n***Удаление текстовых значений "null" в таблицах макетов...***')
+    for table in tableList:
+        desc = a.Describe(table)
+        fList = [f.name for f in a.ListFields(table) if f.type in ('String')]
+        whereList = []
+        for field in fList:
+            fieldExprr = "{} = 'null'".format(field)
+            whereList.append(fieldExprr)
+        where_clause = ' OR '.join(whereList)
+        with a.da.UpdateCursor(table, fList, where_clause) as cursor:
+            for row in cursor:
+                for i in range(0, len(row)-1):
+                    if row[i] == 'null':
+                        row[i] = None
+                cursor.updateRow(row)
+        a.AddMessage(u'Проверена и исправлена таблица {}'.format(table))
 
 def get_fields(table):
     fields = {}
@@ -127,6 +145,9 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
     a.AddMessage(u'Отсутствуют макеты (№): {}'.format(", ".join(list(map(str,(sorted(set_tax - set_f)))))))
     if set_f - set_tax:
         a.AddMessage(u'Нет шаблонов для загрузки макетов: {}'.format(", ".join(list(map(str,(sorted(set_f - set_tax)))))))
+    
+    # Удаление текстовых значений "null" в ForestBase, т.к. при их наличии таблица не присоединяется в TaxationData
+    calc_zerofield(f_tables.values())
 
     a.AddMessage("Шаг 1. Проверка структуры баз данных завершена\n")
 
