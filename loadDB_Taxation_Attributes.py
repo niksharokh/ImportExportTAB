@@ -8,22 +8,23 @@ from os import path
 
 # Замена значений 0 на Null
 def calc_zerofield(tableList):
-    a.AddMessage('\n***Удаление текстовых значений "null" в таблицах макетов...***')
+    a.AddMessage('\n***Удаление текстовых значений "null" в таблицах макетов в БД {}...***'.format(tableList[0].split('\\')[-2]))
     for table in tableList:
         desc = a.Describe(table)
         fList = [f.name for f in a.ListFields(table) if f.type in ('String')]
-        whereList = []
-        for field in fList:
-            fieldExprr = "{} = 'null'".format(field)
-            whereList.append(fieldExprr)
-        where_clause = ' OR '.join(whereList)
-        with a.da.UpdateCursor(table, fList, where_clause) as cursor:
-            for row in cursor:
-                for i in range(0, len(row)-1):
-                    if row[i] == 'null':
-                        row[i] = None
-                cursor.updateRow(row)
-        a.AddMessage(u'Проверена и исправлена таблица {}'.format(table))
+        if fList:
+            whereList = []
+            for field in fList:
+                fieldExprr = "{} = 'null'".format(field)
+                whereList.append(fieldExprr)
+            where_clause = ' OR '.join(whereList)
+            with a.da.UpdateCursor(table, fList, where_clause) as cursor:
+                for row in cursor:
+                    for i in range(0, len(row)-1):
+                        if row[i] == 'null':
+                            row[i] = None
+                    cursor.updateRow(row)
+        a.AddMessage(u'Проверена и исправлена таблица {}'.format(table.split('\\')[-1]))
 
 def get_fields(table):
     fields = {}
