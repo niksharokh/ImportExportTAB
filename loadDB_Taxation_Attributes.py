@@ -235,7 +235,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 1 (MAINBASE -> Layout1) успешно завершена!")
                 
         except:
-            a.AddError("Не удалось загрузить макет 1")
+            a.AddError(u"Не удалось загрузить макет 1: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
     if 10 in layouts:
@@ -270,10 +270,10 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
                                         expression='[POLN] / 100')
             a.CalculateField_management (in_table=tax_tables[10], field='H_M10', 
                                         expression='[H_M10] / 10')
-            a.AddMessage("Загрузка макета 10 успешно завершена!")
+            a.AddMessage(u"Загрузка макета 10 успешно завершена!")
             
         except:
-            a.AddError("Не удалось загрузить макет 10")
+            a.AddError("Не удалось загрузить макет 10: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
     if 11 in layouts:
@@ -301,10 +301,10 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
 
             a.Append_management(inputs=f_tables[11], target=tax_tables[11], 
                                 schema_type="NO_TEST", field_mapping=fms, subtype="")
-            a.AddMessage("Загрузка макета 11 успешно завершена!")
+            a.AddMessage(u"Загрузка макета 11 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 11")
+            a.AddError("Не удалось загрузить макет 11: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
     if 12 in layouts:
@@ -331,10 +331,10 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
 
             a.Append_management(inputs=f_tables[12], target=tax_tables[11], 
                                 schema_type="NO_TEST", field_mapping=fms, subtype="")
-            a.AddMessage("Загрузка макета 12 успешно завершена!")
+            a.AddMessage(u"Загрузка макета 12 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 12")
+            a.AddError("Не удалось загрузить макет 12: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
     if 13 in layouts:
@@ -373,7 +373,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 13 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 13")
+            a.AddError(u"Не удалось загрузить макет 13: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -406,7 +406,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 14 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 14")
+            a.AddError(u"Не удалось загрузить макет 14: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -438,7 +438,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 15 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 15")
+            a.AddError(u"Не удалось загрузить макет 15: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -468,7 +468,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 16 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 16")
+            a.AddError(u"Не удалось загрузить макет 16: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -498,7 +498,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 17 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 17")
+            a.AddError(u"Не удалось загрузить макет 17: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -527,7 +527,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 18 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 18")
+            a.AddError(u"Не удалось загрузить макет 18: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -555,7 +555,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 19 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 19")
+            a.AddError(u"Не удалось загрузить макет 19: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -587,7 +587,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 20 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 20")
+            a.AddError(u"Не удалось загрузить макет 20: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -616,7 +616,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 21 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 21")
+            a.AddError(u"Не удалось загрузить макет 21: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -647,7 +647,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 22 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 22")
+            a.AddError(u"Не удалось загрузить макет 22: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -679,7 +679,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 23 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 23")
+            a.AddError(u"Не удалось загрузить макет 23: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -709,7 +709,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 25 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 25")
+            a.AddError(u"Не удалось загрузить макет 25: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -733,7 +733,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 26 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 26")
+            a.AddError(u"Не удалось загрузить макет 26: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -764,7 +764,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 27 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 27")
+            a.AddError(u"Не удалось загрузить макет 27: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -788,7 +788,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 28 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 28")
+            a.AddError(u"Не удалось загрузить макет 28: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -816,7 +816,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 29 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 29")
+            a.AddError(u"Не удалось загрузить макет 29: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -848,7 +848,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 30 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 30")
+            a.AddError(u"Не удалось загрузить макет 30: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -883,7 +883,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 31 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 31")
+            a.AddError(u"Не удалось загрузить макет 31: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -910,7 +910,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 32 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 32")
+            a.AddError(u"Не удалось загрузить макет 32: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
@@ -940,7 +940,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage("Загрузка макета 35 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 35")
+            a.AddError(u"Не удалось загрузить макет 35: {}{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
 
