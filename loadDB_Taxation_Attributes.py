@@ -142,11 +142,11 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
     set_f = set(f_tables.keys())
     set_tax = set(tax_tables.keys())
 
-    a.AddMessage(u'Подготовлено макетов для загрузки в шаблоны: {}'.format(len(set_f & set_tax)))
+    a.AddMessage(u'Подготовлено макетов для загрузки: {}'.format(len(set_f & set_tax)))
     a.AddMessage(u'Отсутствуют макеты (№): {}'.format(", ".join(list(map(str,(sorted(set_tax - set_f)))))))
     if set_f - set_tax:
-        a.AddMessage(u'Нет шаблонов для загрузки макетов: {}'.format(", ".join(list(map(str,(sorted(set_f - set_tax)))))))
-    
+        a.AddError(u'Отсутствуют исходные таблицы для загрузки в макеты: {}'.format(", ".join(list(map(str,(sorted(set_f - set_tax)))))))
+        
     # Удаление текстовых значений "null" в ForestBase, т.к. при их наличии таблица не присоединяется в TaxationData
     calc_zerofield(f_tables.values())
 
