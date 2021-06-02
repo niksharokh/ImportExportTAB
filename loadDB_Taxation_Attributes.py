@@ -10,12 +10,13 @@ from os import path
 def calc_zerofield(tableList):
     a.AddMessage('\n***Удаление текстовых значений "null" в таблицах макетов в БД {}...***'.format(tableList[0].split('\\')[-2]))
     for table in tableList:
+        a.AddMessage(u'Таблица {}:'.format(table.split('\\')[-1]))
         desc = a.Describe(table)
         fList = [f.name for f in a.ListFields(table) if f.type in ('String')]
         if fList:
             whereList = []
             for field in fList:
-                fieldExprr = "{} = 'null'".format(field)
+                fieldExprr = u"{} = 'null'".format(field)
                 whereList.append(fieldExprr)
             where_clause = ' OR '.join(whereList)
             with a.da.UpdateCursor(table, fList, where_clause) as cursor:
@@ -24,7 +25,7 @@ def calc_zerofield(tableList):
                         if row[i] == 'null':
                             row[i] = None
                     cursor.updateRow(row)
-        a.AddMessage(u'Проверена и исправлена таблица {}'.format(table.split('\\')[-1]))
+        a.AddMessage(u'Проверена и исправлена успешно')
 
 def get_fields(table):
     fields = {}
@@ -112,7 +113,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             if a.Exists(i):
                 try:
                     a.TruncateTable_management(i)
-                    a.AddMessage(u"Удалены все строки из {}".format(i))
+                    a.AddMessage(u"Удалены все строки из {}".format(i.split('\\')[-1]))
                 except:
                     a.AddWarning(u"Не удалось удалить строки из {}".format(i))
                     cleaning_test = 0
@@ -145,7 +146,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
     a.AddMessage(u'Подготовлено макетов для загрузки: {}'.format(len(set_f & set_tax)))
     a.AddMessage(u'Отсутствуют макеты (№): {}'.format(", ".join(list(map(str,(sorted(set_tax - set_f)))))))
     if set_f - set_tax:
-        a.AddError(u'Отсутствуют исходные таблицы для загрузки в макеты: {}'.format(", ".join(list(map(str,(sorted(set_f - set_tax)))))))
+        a.AddWarning(u'Отсутствуют исходные таблицы для загрузки в макеты: {}'.format(", ".join(list(map(str,(sorted(set_f - set_tax)))))))
         
     # Удаление текстовых значений "null" в ForestBase, т.к. при их наличии таблица не присоединяется в TaxationData
     calc_zerofield(f_tables.values())
