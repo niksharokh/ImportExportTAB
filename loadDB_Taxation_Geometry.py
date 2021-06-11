@@ -45,7 +45,7 @@ def f_to_fms(fms, fieldsIN, fieldsOUT, fcIN, fnameIN, fnameOUT=0):
             fms.addFieldMap(x)
             a.AddMessage(u"  Поле [{}] успешно проверено для загрузки".format(fnameIN))   
     except:
-        a.AddWarning(u"x Не удалось добавить поле [{}] для загрузки в класс {}".format(fnameIN, fcOUT))
+        a.AddWarning(u"x Не удалось добавить поле [{}] для загрузки в класс {}\n{}\n{}".format(fnameIN, fcOUT, a.GetMessages(2), a.GetMessages(1)))
 
 input_folder = a.GetParameterAsText(0)
 output_DB = a.GetParameterAsText(1)
@@ -75,7 +75,7 @@ def main(input_folder=input_folder, output_DB=output_DB, cleanDB=cleanDB):
         a.AddMessage(u"Номер лесхоза - {}".format(leshoz_num))
         #leshoz_num = input_folder.split("_")[-1]
     except:
-        a.AddError("Невозможно получить номер лесхоза из названия каталога, т.к. не содержит шаблон 'Лесхоз_<номер>'")
+        a.AddError("Невозможно получить номер лесхоза из названия каталога, т.к. не содержит шаблон 'Лесхоз_<номер>'\n{}\n{}".format(a.GetMessages(2), a.GetMessages(1)))
         raise a.ExecuteError
 
     loading_test = 1
@@ -115,7 +115,7 @@ def main(input_folder=input_folder, output_DB=output_DB, cleanDB=cleanDB):
                                      expression='[LESHOZKOD] * 100 + [LESNICHKOD]')
         a.AddMessage('Загрузка данных класса «Кварталы» завершена успешно!')
     except:
-        a.AddWarning("Не удалось загрузить класс «Кварталы»!")
+        a.AddError(u"Не удалось загрузить класс «Кварталы»!\n{}\n{}".format(a.GetMessages(2), a.GetMessages(1)))
         loading_test = 0
 
 
@@ -153,7 +153,7 @@ def main(input_folder=input_folder, output_DB=output_DB, cleanDB=cleanDB):
                                      expression='[LESHOZKOD] * 100 + [LESNICHKOD]')
         a.AddMessage('Загрузка данных класса «Выделы» завершена успешно!')
     except:
-        a.AddWarning("Не удалось загрузить класс «Выделы»!")
+        a.AddError(u"Не удалось загрузить класс «Выделы»!\n{}\n{}".format(a.GetMessages(2), a.GetMessages(1)))
         loading_test = 0
 
 
@@ -191,13 +191,13 @@ def main(input_folder=input_folder, output_DB=output_DB, cleanDB=cleanDB):
                                      expression='[LESHOZKOD] * 100 + [LESNICHKOD]')
         a.AddMessage('Загрузка данных класса «Выделы_линейные» завершена успешно!')
     except:
-        a.AddWarning("Не удалось загрузить класс «Выделы_линейные»!")
+        a.AddError(u"Не удалось загрузить класс «Выделы_линейные»!\n{}\n{}".format(a.GetMessages(2), a.GetMessages(1)))
         loading_test = 0
 
     if loading_test:
         a.AddMessage("\nЗагрузка данных завершена успешно!\n")
     else:
-        a.AddMessage("\nЗагрузка данных завершена\n")
+        a.AddError("\nЗагрузка данных завершена с ошибками\n")
 
 
 if __name__ == "__main__":
