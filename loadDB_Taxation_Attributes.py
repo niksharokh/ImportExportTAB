@@ -8,7 +8,7 @@ from os import path
 
 # Замена значений 0 на Null
 def calc_zerofield(tableList):
-    a.AddMessage('\n***Удаление текстовых значений "null" в таблицах макетов в БД {}...***'.format(tableList[0].split('\\')[-2]))
+    a.AddMessage(u'\n***Удаление текстовых значений "null" в таблицах макетов в БД {}...***'.format(tableList[0].split('\\')[-2]))
     for table in tableList:
         a.AddMessage(u'Таблица {}:'.format(table.split('\\')[-1]))
         desc = a.Describe(table)
@@ -274,7 +274,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage(u"Загрузка макета 10 успешно завершена!")
             
         except:
-            a.AddError("Не удалось загрузить макет 10:\n{}\n{}".format(a.GetMessages(1), a.GetMessages(2)))
+            a.AddError(u"Не удалось загрузить макет 10:\n{}\n{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
     if 11 in layouts:
@@ -305,7 +305,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage(u"Загрузка макета 11 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 11:\n{}\n{}".format(a.GetMessages(1), a.GetMessages(2)))
+            a.AddError(u"Не удалось загрузить макет 11:\n{}\n{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
     if 12 in layouts:
@@ -335,7 +335,7 @@ def main(input_DB=input_DB, output_DB=output_DB, cleanDB=cleanDB):
             a.AddMessage(u"Загрузка макета 12 успешно завершена!")
                     
         except:
-            a.AddError("Не удалось загрузить макет 12:\n{}\n{}".format(a.GetMessages(1), a.GetMessages(2)))
+            a.AddError(u"Не удалось загрузить макет 12:\n{}\n{}".format(a.GetMessages(1), a.GetMessages(2)))
             loading_test = 0
 
     if 13 in layouts:
